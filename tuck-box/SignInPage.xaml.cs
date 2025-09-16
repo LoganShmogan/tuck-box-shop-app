@@ -1,9 +1,11 @@
-namespace MauiApp1;
-
-public partial class SignInPage : ContentPage
+namespace tuck_box
 {
-	public SignInPage()
-	{
-		InitializeComponent();
-	}
+    public partial class SignInPage : ContentPage
+    {
+        public SignInPage()
+        {
+            InitializeComponent();
+
+        }
+    }
 }
