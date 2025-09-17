@@ -14,6 +14,7 @@
             VerticalOptions="Center">
             
             <Image
+                x:Name="imgLogo"
                 Source="Resources\CustomImages\logo.svg"
                 />
 
@@ -21,6 +22,7 @@
                 Text="Email: "
                 />
             <Entry
+                x:Name="entEmail"
                 Placeholder="myemail@email.com"
                 />
 
@@ -28,21 +30,19 @@
                 Text="Password: "
                 />
             <Entry
+                x:Name="entPassword"
                 Placeholder="********"
                 />
 
             <Button 
-                x:Name="SignInButton"
+                x:Name="btnSignIn"
                 Text="Sign In"
                 SemanticProperties.Hint="Sign In"
                 IsEnabled="False"
                 />
-
-            <Label
-                Text="Create an Account here ->"
-                />
             
             <Button
+                x:Name="btnCreateAccount"
                 Text="Create Account"
                 />
 
