@@ -13,7 +13,9 @@
             Padding="30,0" 
             VerticalOptions="Center">
             
-            <Image/>
+            <Image
+                Source="Resources\CustomImages\logo.svg"
+                />
 
             <Label
                 Text="Email: "
@@ -33,7 +35,16 @@
                 x:Name="SignInButton"
                 Text="Sign In"
                 SemanticProperties.Hint="Sign In"
-                IsEnabled="False"/>
+                IsEnabled="False"
+                />
+
+            <Label
+                Text="Create an Account here ->"
+                />
+            
+            <Button
+                Text="Create Account"
+                />
 
         </VerticalStackLayout>
     </ScrollView>
