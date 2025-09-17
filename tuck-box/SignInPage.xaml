@@ -21,14 +21,14 @@
                 Text="Email: "
                 />
             <Entry
-                Placeholder="Email@email.com"
+                Placeholder="myemail@email.com"
                 />
 
             <Label
                 Text="Password: "
                 />
             <Entry
-                Placeholder="Password ****"
+                Placeholder="********"
                 />
 
             <Button 
