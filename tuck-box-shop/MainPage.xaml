@@ -16,16 +16,20 @@
 
             <Label
                 Text="Email" 
+                TextColor="White"
                 />
             <Entry
                 Text="email@example.com" 
+                TextColor="White"
                 />
 
             <Label
                 Text="Password"
+                TextColor="White"
                 />
             <Entry
                 Text="********" 
+                TextColor="White"
                 />
 
             <Button
