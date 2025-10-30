@@ -34,6 +34,7 @@
 
             <Button
                 Text="Log In"
+                BackgroundColor=""
                 />
             <Button
                 Text="Sign Up"
