@@ -1,24 +1,40 @@
 ﻿using Microsoft.Extensions.Logging;
+using tuck_box_shop.Services;
+using tuck_box_shop.ViewModels;
+using tuck_box_shop.Views;
 
-namespace tuck_box_shop;
-
-public static class MauiProgram
+namespace tuck_box_shop
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+    public static class MauiProgram
+    {
+        public static MauiApp CreateMauiApp()
+        {
+            var builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+    		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
-	}
+            // Register Services
+            builder.Services.AddSingleton<IFirebaseService, FirebaseService>();
+            builder.Services.AddSingleton<IAuthService, AuthService>();
+            
+            // Register ViewModels
+            builder.Services.AddTransient<LoginViewModel>();
+            // You'll add more ViewModels here as you create them
+            
+            // Register Pages
+            builder.Services.AddTransient<LoginPage>();
+            // You'll add more Pages here as you create them
+
+            return builder.Build();
+        }
+    }
 }
