@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using tuck_box_shop.Services;
 using tuck_box_shop.ViewModels;
-using tuck_box_shop.Views;
 
 namespace tuck_box_shop
 {
