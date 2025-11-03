@@ -1,0 +1,63 @@
+{
+  "tuckbox": {
+    "users": {
+      "user1": {
+        "id": "user1",
+        "email": "user@example.com",
+        "password": "password123",
+        "fullName": "John Doe",
+        "mobileNumber": "1234567890",
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-01T00:00:00Z"
+      }
+    },
+    "foodItems": {
+      "item1": {
+        "id": "item1",
+        "name": "Chicken Sandwich",
+        "description": "Grilled chicken with fresh vegetables",
+        "price": 8.99,
+        "imageUrl": "",
+        "customizationOptions": ["Bread Type", "Sauce", "Vegetables"]
+      },
+      "item2": {
+        "id": "item2",
+        "name": "Caesar Salad",
+        "description": "Fresh greens with caesar dressing",
+        "price": 7.99,
+        "imageUrl": "",
+        "customizationOptions": ["Dressing", "Croutons", "Cheese"]
+      }
+    },
+    "cities": {
+      "city1": {
+        "id": "city1",
+        "name": "New York",
+        "isActive": true
+      },
+      "city2": {
+        "id": "city2",
+        "name": "Los Angeles",
+        "isActive": true
+      }
+    },
+    "timeSlots": {
+      "slot1": {
+        "id": "slot1",
+        "displayText": "11:00 AM - 12:00 PM",
+        "startTime": "11:00",
+        "endTime": "12:00",
+        "isAvailable": true
+      },
+      "slot2": {
+        "id": "slot2",
+        "displayText": "12:00 PM - 1:00 PM",
+        "startTime": "12:00",
+        "endTime": "13:00",
+        "isAvailable": true
+      }
+    },
+    "orders": {},
+    "deliveryAddresses": {}
+  }
+}

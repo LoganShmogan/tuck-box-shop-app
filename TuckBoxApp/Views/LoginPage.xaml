@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="TuckBoxApp.Views.LoginPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Login">
+    
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*,Auto" 
+              RowSpacing="20" 
+              Padding="20">
+            
+            <!-- Header -->
+            <VerticalStackLayout Grid.Row="0" Spacing="10">
+                <Label Text="Welcome Back" 
+                       FontSize="28" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center"/>
+                <Label Text="Login to your Tuck Box account" 
+                       FontSize="16" 
+                       HorizontalOptions="Center" 
+                       TextColor="Gray"/>
+            </VerticalStackLayout>
+            
+            <!-- Form -->
+            <VerticalStackLayout Grid.Row="1" Spacing="15">
+                <Frame BackgroundColor="White" Padding="15" HasShadow="True">
+                    <VerticalStackLayout Spacing="15">
+                        
+                        <!-- Email -->
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Email" FontSize="14" FontAttributes="Bold"/>
+                            <Entry Text="{Binding Email}" 
+                                   Placeholder="Enter your email" 
+                                   Keyboard="Email"/>
+                        </VerticalStackLayout>
+                        
+                        <!-- Password -->
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Password" FontSize="14" FontAttributes="Bold"/>
+                            <Entry Text="{Binding Password}" 
+                                   Placeholder="Enter your password" 
+                                   IsPassword="True"/>
+                        </VerticalStackLayout>
+                        
+                        <!-- Error/Success Messages -->
+                        <Label Text="{Binding ErrorMessage}" 
+                               TextColor="Red" 
+                               IsVisible="{Binding ErrorMessage, Converter={x:StaticResource StringToBoolConverter}}"/>
+                        <Label Text="{Binding SuccessMessage}" 
+                               TextColor="Green" 
+                               IsVisible="{Binding SuccessMessage, Converter={x:StaticResource StringToBoolConverter}}"/>
+                        
+                        <!-- Login Button -->
+                        <Button Text="Login" 
+                                Command="{Binding LoginCommand}" 
+                                IsEnabled="{Binding IsNotBusy}"
+                                BackgroundColor="{DynamicResource Primary}"
+                                TextColor="White"
+                                CornerRadius="10"
+                                HeightRequest="50"/>
+                        
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+            
+            <!-- Footer -->
+            <Border Grid.Row="2" Stroke="LightGray" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                <VerticalStackLayout Spacing="10" Padding="15">
+                    <Label Text="Don't have an account?" 
+                           HorizontalOptions="Center" 
+                           TextColor="Gray"/>
+                    <Button Text="Create Account" 
+                            Command="{Binding GoToRegisterCommand}" 
+                            BackgroundColor="Transparent" 
+                            TextColor="{DynamicResource Primary}"
+                            BorderColor="{DynamicResource Primary}"
+                            BorderWidth="1"
+                            CornerRadius="10"
+                            HeightRequest="40"/>
+                </VerticalStackLayout>
+            </Border>
+            
+        </Grid>
+    </ScrollView>
+</ContentPage>

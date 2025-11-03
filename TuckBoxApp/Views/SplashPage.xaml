@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="TuckBoxApp.Views.SplashPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="false">
+    
+    <Grid BackgroundColor="{DynamicResource Primary}">
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+            <Image Source="tuckbox_logo.png" 
+                   HeightRequest="120" 
+                   WidthRequest="120" 
+                   HorizontalOptions="Center"/>
+            
+            <Label Text="Tuck Box" 
+                   FontSize="32" 
+                   FontAttributes="Bold" 
+                   TextColor="White" 
+                   HorizontalOptions="Center"/>
+            
+            <Label Text="Lunch Delivery Service" 
+                   FontSize="16" 
+                   TextColor="White" 
+                   HorizontalOptions="Center"/>
+            
+            <ActivityIndicator IsRunning="True" Color="White" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

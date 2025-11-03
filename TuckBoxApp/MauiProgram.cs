@@ -1,24 +1,49 @@
 ﻿using Microsoft.Extensions.Logging;
+using TuckBoxApp.Services;
+using TuckBoxApp.ViewModels;
+using TuckBoxApp.Views;
 
 namespace TuckBoxApp;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
-	}
+        // Register Services
+        builder.Services.AddSingleton<IFirebaseService, FirebaseService>();
+        builder.Services.AddSingleton<IAuthService, AuthService>();
+        builder.Services.AddSingleton<IOrderService, OrderService>();
+        
+        // Register ViewModels
+        builder.Services.AddTransient<LoginViewModel>();
+        builder.Services.AddTransient<RegisterViewModel>();
+        builder.Services.AddTransient<MainViewModel>();
+        builder.Services.AddTransient<OrderViewModel>();
+        builder.Services.AddTransient<ProfileViewModel>();
+        builder.Services.AddTransient<OrderHistoryViewModel>();
+        
+        // Register Views
+        builder.Services.AddTransient<SplashPage>();
+        builder.Services.AddTransient<LoginPage>();
+        builder.Services.AddTransient<RegisterPage>();
+        builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<OrderPage>();
+        builder.Services.AddTransient<ProfilePage>();
+        builder.Services.AddTransient<OrderHistoryPage>();
+        
+        return builder.Build();
+    }
 }
