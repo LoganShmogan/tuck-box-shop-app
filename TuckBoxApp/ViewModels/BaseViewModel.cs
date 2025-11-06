@@ -1,5 +1,4 @@
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace TuckBoxApp.ViewModels;
 
@@ -16,6 +15,8 @@ public partial class BaseViewModel : ObservableObject
     
     [ObservableProperty]
     private string _successMessage = string.Empty;
+    
+    public bool IsNotBusy => !IsBusy;
     
     protected void ShowError(string message)
     {

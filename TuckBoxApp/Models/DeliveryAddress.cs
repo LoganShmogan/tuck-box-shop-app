@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace TuckBoxApp.Models;
 
 public class DeliveryAddress
@@ -15,5 +17,5 @@ public class DeliveryAddress
     [Required(ErrorMessage = "Postal code is required")]
     public string PostalCode { get; set; } = string.Empty;
     public bool IsPrimary { get; set; }
-    public string Label { get; set; } = "Home"; // Home, Work, etc.
+    public string Label { get; set; } = "Home";
 }

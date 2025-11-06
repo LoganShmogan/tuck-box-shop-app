@@ -2,6 +2,7 @@
 using TuckBoxApp.Services;
 using TuckBoxApp.ViewModels;
 using TuckBoxApp.Views;
+using TuckBoxApp.Converters;
 
 namespace TuckBoxApp;
 
@@ -31,9 +32,6 @@ public static class MauiProgram
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<RegisterViewModel>();
         builder.Services.AddTransient<MainViewModel>();
-        builder.Services.AddTransient<OrderViewModel>();
-        builder.Services.AddTransient<ProfileViewModel>();
-        builder.Services.AddTransient<OrderHistoryViewModel>();
         
         // Register Views
         builder.Services.AddTransient<SplashPage>();
@@ -43,6 +41,10 @@ public static class MauiProgram
         builder.Services.AddTransient<OrderPage>();
         builder.Services.AddTransient<ProfilePage>();
         builder.Services.AddTransient<OrderHistoryPage>();
+        
+        // Register Converters
+        builder.Services.AddSingleton<NotEmptyConverter>();
+        builder.Services.AddSingleton<StringToBoolConverter>();
         
         return builder.Build();
     }

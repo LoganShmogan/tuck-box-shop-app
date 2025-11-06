@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="TuckBoxApp.Views.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Home">
+    
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            
+            <!-- Welcome Section -->
+            <Frame BackgroundColor="{DynamicResource Primary}" Padding="20" HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Welcome back!" 
+                           FontSize="24" 
+                           FontAttributes="Bold" 
+                           TextColor="White"/>
+                    <Label Text="{Binding UserName}" 
+                           FontSize="18" 
+                           TextColor="White"/>
+                </VerticalStackLayout>
+            </Frame>
+            
+            <!-- Quick Actions -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="15" RowSpacing="15">
+                <Button Grid.Column="0" 
+                        Text="Place Order" 
+                        Command="{Binding PlaceOrderCommand}"
+                        BackgroundColor="{DynamicResource Primary}"
+                        TextColor="White"
+                        HeightRequest="80"
+                        CornerRadius="10"/>
+                
+                <Button Grid.Column="1" 
+                        Text="Profile" 
+                        Command="{Binding ViewProfileCommand}"
+                        BackgroundColor="{DynamicResource Secondary}"
+                        TextColor="Black"
+                        HeightRequest="80"
+                        CornerRadius="10"/>
+                
+                <Button Grid.Column="0" 
+                        Grid.Row="1"
+                        Text="Order History" 
+                        Command="{Binding ViewOrderHistoryCommand}"
+                        BackgroundColor="{DynamicResource Tertiary}"
+                        TextColor="Black"
+                        HeightRequest="80"
+                        CornerRadius="10"/>
+                
+                <Button Grid.Column="1" 
+                        Grid.Row="1"
+                        Text="Logout" 
+                        Command="{Binding LogoutCommand}"
+                        BackgroundColor="LightGray"
+                        TextColor="Black"
+                        HeightRequest="80"
+                        CornerRadius="10"/>
+            </Grid>
+            
+            <!-- Current Orders -->
+            <Frame IsVisible="{Binding CurrentOrders.Count, Converter={x:StaticResource NotEmptyConverter}}"
+                   BackgroundColor="White" 
+                   Padding="15" 
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Today's Orders" 
+                           FontSize="18" 
+                           FontAttributes="Bold"/>
+                    
+                    <CollectionView ItemsSource="{Binding CurrentOrders}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Order">
+                                <Grid Padding="10" ColumnDefinitions="*,Auto">
+                                    <VerticalStackLayout Grid.Column="0">
+                                        <Label Text="{Binding Status}" 
+                                               FontSize="14" 
+                                               FontAttributes="Bold"/>
+                                        <Label Text="{Binding OrderDate, StringFormat='{0:hh:mm tt}'}" 
+                                               FontSize="12" 
+                                               TextColor="Gray"/>
+                                    </VerticalStackLayout>
+                                    <Label Grid.Column="1" 
+                                           Text="{Binding TotalAmount, StringFormat='${0:F2}'}" 
+                                           FontSize="16" 
+                                           FontAttributes="Bold"
+                                           VerticalOptions="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
