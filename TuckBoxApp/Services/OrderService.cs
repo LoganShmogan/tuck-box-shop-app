@@ -4,37 +4,42 @@ namespace TuckBoxApp.Services;
 
 public class OrderService : IOrderService
 {
-    private readonly IFirebaseService _firebaseService;
-    
-    public OrderService(IFirebaseService firebaseService)
+    private readonly ILocalDataService _localDataService;
+
+    public OrderService(ILocalDataService localDataService)
     {
-        _firebaseService = firebaseService;
+        _localDataService = localDataService;
     }
-    
+
     public Task<List<Order>> GetUserOrdersAsync(string userId)
     {
-        return _firebaseService.GetUserOrdersAsync(userId);
+        return _localDataService.GetUserOrdersAsync(userId);
     }
-    
+
     public Task<Order> GetOrderAsync(string orderId)
     {
-        return _firebaseService.GetOrderAsync(orderId);
+        return _localDataService.GetOrderAsync(orderId);
     }
-    
+
     public Task<string> CreateOrderAsync(Order order)
     {
-        return _firebaseService.AddOrderAsync(order);
+        return _localDataService.AddOrderAsync(order);
     }
-    
+
     public Task<bool> UpdateOrderAsync(Order order)
     {
-        // Implementation would update order in Firebase
-        return Task.FromResult(true);
+        return _localDataService.UpdateOrderAsync(order);
     }
-    
-    public Task<bool> CancelOrderAsync(string orderId)
+
+    public async Task<bool> CancelOrderAsync(string orderId)
     {
-        // Implementation would cancel order in Firebase
-        return Task.FromResult(true);
+        var order = await _localDataService.GetOrderAsync(orderId);
+        if (order == null)
+        {
+            return false;
+        }
+
+        order.Status = OrderStatus.Cancelled;
+        return await _localDataService.UpdateOrderAsync(order);
     }
 }

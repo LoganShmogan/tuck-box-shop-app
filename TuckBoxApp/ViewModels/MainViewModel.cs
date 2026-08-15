@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TuckBoxApp.Models;
 using TuckBoxApp.Services;
+using TuckBoxApp.Views;
 
 namespace TuckBoxApp.ViewModels;
 

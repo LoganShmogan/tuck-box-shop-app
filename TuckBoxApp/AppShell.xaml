@@ -37,19 +37,16 @@
                   Route="RegisterPage" />
     
     <TabBar Route="Main">
-        <ShellContent Title="Home" 
-                      Icon="home.png" 
-                      ContentTemplate="{DataTemplate views:MainPage}" 
+        <ShellContent Title="Home"
+                      ContentTemplate="{DataTemplate views:MainPage}"
                       Route="MainPage" />
-        
-        <ShellContent Title="Order" 
-                      Icon="order.png" 
-                      ContentTemplate="{DataTemplate views:OrderPage}" 
+
+        <ShellContent Title="Order"
+                      ContentTemplate="{DataTemplate views:OrderPage}"
                       Route="OrderPage" />
-        
-        <ShellContent Title="Profile" 
-                      Icon="profile.png" 
-                      ContentTemplate="{DataTemplate views:ProfilePage}" 
+
+        <ShellContent Title="Profile"
+                      ContentTemplate="{DataTemplate views:ProfilePage}"
                       Route="ProfilePage" />
     </TabBar>
     

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
 using TuckBoxApp.Services;
 using TuckBoxApp.ViewModels;
 using TuckBoxApp.Views;
@@ -24,7 +25,7 @@ public static class MauiProgram
 #endif
 
         // Register Services
-        builder.Services.AddSingleton<IFirebaseService, FirebaseService>();
+        builder.Services.AddSingleton<ILocalDataService, LocalDataService>();
         builder.Services.AddSingleton<IAuthService, AuthService>();
         builder.Services.AddSingleton<IOrderService, OrderService>();
         

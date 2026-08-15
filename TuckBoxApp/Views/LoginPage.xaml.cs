@@ -1,3 +1,5 @@
+using TuckBoxApp.ViewModels;
+
 namespace TuckBoxApp.Views;
 
 public partial class LoginPage : ContentPage

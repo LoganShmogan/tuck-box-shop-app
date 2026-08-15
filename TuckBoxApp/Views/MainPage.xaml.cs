@@ -1,4 +1,6 @@
-﻿namespace TuckBoxApp.Views;
+﻿using TuckBoxApp.ViewModels;
+
+namespace TuckBoxApp.Views;
 
 public partial class MainPage : ContentPage
 {

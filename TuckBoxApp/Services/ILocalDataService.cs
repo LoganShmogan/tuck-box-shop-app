@@ -2,21 +2,23 @@ using TuckBoxApp.Models;
 
 namespace TuckBoxApp.Services;
 
-public interface IFirebaseService
+public interface ILocalDataService
 {
     Task<bool> AddUserAsync(User user);
-    Task<User> GetUserAsync(string userId);
+    Task<User?> GetUserAsync(string userId);
+    Task<List<User>> GetAllUsersAsync();
     Task<bool> UpdateUserAsync(User user);
     Task<bool> DeleteUserAsync(string userId);
-    
+
     Task<List<FoodItem>> GetFoodItemsAsync();
     Task<List<City>> GetCitiesAsync();
     Task<List<TimeSlot>> GetTimeSlotsAsync();
-    
-    Task<string> AddOrderAsync(Order order);
+
+    Task<string?> AddOrderAsync(Order order);
     Task<List<Order>> GetUserOrdersAsync(string userId);
-    Task<Order> GetOrderAsync(string orderId);
-    
+    Task<Order?> GetOrderAsync(string orderId);
+    Task<bool> UpdateOrderAsync(Order order);
+
     Task<bool> AddDeliveryAddressAsync(DeliveryAddress address);
     Task<List<DeliveryAddress>> GetUserAddressesAsync(string userId);
     Task<bool> UpdateDeliveryAddressAsync(DeliveryAddress address);

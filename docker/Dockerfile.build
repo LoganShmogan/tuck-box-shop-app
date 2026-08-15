@@ -1,0 +1,38 @@
+# Build-verification image only. This does NOT run the app: a native MAUI
+# app needs a real Android/iOS/Mac Catalyst/Windows runtime with a display,
+# which a Docker container cannot provide. This image only proves that the
+# Android target compiles, using the official .NET SDK image on Linux.
+FROM mcr.microsoft.com/dotnet/sdk:9.0
+
+# The .NET Android SDK installer looks up the current user name directly and
+# fails in minimal containers where USER is unset.
+ENV USER=root
+
+# The Android build tooling (aapt2, d8/r8) needs a JDK, which the base image
+# does not include.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends default-jdk-headless \
+    && rm -rf /var/lib/apt/lists/*
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+
+# The android/maui-android workloads only bring the .NET-side MSBuild
+# integration, not the actual Android SDK (platform-tools/build-tools). That
+# gets installed below, once, so it is cached in this image layer instead of
+# being re-downloaded on every `docker run`.
+ENV ANDROID_SDK_ROOT=/opt/android-sdk
+ENV ANDROID_HOME=/opt/android-sdk
+
+RUN dotnet workload install android maui-android
+
+# A real project is needed to know which Android API level to fetch. This
+# copy is build-time only: at `docker run` time the real source is bind
+# mounted over /src, replacing what is copied here.
+COPY . /warmup
+WORKDIR /warmup/TuckBoxApp
+RUN dotnet restore -p:TargetFrameworks=net9.0-android \
+    && dotnet build -t:InstallAndroidDependencies -f net9.0-android --no-restore \
+       -p:AcceptAndroidSDKLicenses=True -p:AndroidSdkDirectory=/opt/android-sdk
+WORKDIR /
+RUN rm -rf /warmup
+
+WORKDIR /src
